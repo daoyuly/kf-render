@@ -3582,6 +3582,13 @@ define( function ( require ) {
                 }
 
                 var e = svg.CreateElement(dom.documentElement);
+
+                // todo add feature
+                e.attribute('width').value = e.attribute('width').value * 2;
+                e.attribute('height').value = e.attribute('height').value * 2;
+                e.attribute('font-size', true).value = 50;
+                e.attribute('style', true).value = 'background: red;';
+
                 e.root = true;
 
                 // render loop

@@ -7,6 +7,8 @@ define( function ( require ) {
     var kity = require( "kity" ),
         canvg = require( "base/canvg" );
 
+    var canvasToImage = require( "base/canvasToImage" );
+
     return kity.createClass( "Output", {
 
         constructor: function ( formula ) {
@@ -114,11 +116,13 @@ define( function ( require ) {
         canvas.style.cssText = 'position: absolute; top: 0; left: 100000px; z-index: -1;';
 
         doc.body.appendChild( canvas );
-        canvg( canvas, data.content );
+        canvg( canvas, data.content,  {scaleWidth: data.width * 4, scaleHeight: data.height * 4 } );
         doc.body.removeChild( canvas );
 
         window.setTimeout( function () {
-            cb( canvas.toDataURL( type ) );
+            // cb( canvas.toDataURL( type ) );
+           var url = canvasToImage(canvas, '#fff', type);
+           cb(url);
         }, 50 );
 
     }
